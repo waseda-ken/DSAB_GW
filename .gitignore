@@ -1,10 +1,8 @@
 eval.*
 gen.*
 grpwk24.*
-Makefile
 seq.*
 syn.*
-test.sh
 orgdata
 dec
 enc
