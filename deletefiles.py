@@ -3,9 +3,8 @@ import os
 def main():
     # List of files to delete
     files_to_delete = [
-        "dec_13", "decdata", "enc_13", "encdata", 
-        "eval", "gen", "seq", "seqdata", 
-        "syn", "syndna"
+        "orgdata", "dec_13", "decdata", "enc_13", "encdata", 
+        "eval", "gen", "seq", "seqdata", "syn", "syndna"
     ]
     
     for file in files_to_delete:

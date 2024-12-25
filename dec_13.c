@@ -4,7 +4,7 @@
 
 int dec(){
   FILE *sfp;
-  if((sfp = fopen(SEQDATA, "r")) ==NULL){
+  if((sfp = fopen(ENCDATA, "r")) ==NULL){
     fprintf(stderr, "cannot open %s\n", SEQDATA);
     exit(1);
   }
