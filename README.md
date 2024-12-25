@@ -9,7 +9,7 @@ UbuntuのインストールはWindowsならWSLでできます。Macはわから�
 
 ## テスティング
 本番では本レポジトリのファイル(orgdata含まない)をtarに圧縮して以下のコードを実行する（らしい）
-```
+```shell
 tar xvf grpwk24.tar
 cd grpwk24
 make
@@ -17,7 +17,7 @@ chmod 755 test.sh
 ./test.sh 1 0 0 0 0 0
 ```
 が、ローカル環境では、
-```
+```shell
 make
 chmod 755 test.sh
 ./test.sh 1 0 0 0 0 0
