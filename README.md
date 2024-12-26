@@ -12,15 +12,7 @@ git clone https://github.com/nobu-h-o/DSAB_GW.git
 ```
 
 ## テスティング
-本番では本レポジトリのファイル(orgdata含まない)をtarに圧縮して以下のコードを実行する（らしい）
-```shell
-tar xvf grpwk24.tar
-cd grpwk24
-make
-chmod 755 test.sh
-./test.sh 1 0 0 0 0 0
-```
-が、ローカル環境では、
+makeでコンパイルをし、test.shでそれらを実行します。test.shのあとの数字でbs, npを指定できます(pdf参照)。
 ```shell
 make
 chmod 755 test.sh
