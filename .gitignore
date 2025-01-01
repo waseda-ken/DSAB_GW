@@ -5,6 +5,10 @@ eval
 gen
 seq
 syn
+eval.c
+gen.c
+seq.c
+syn.c
 orgdata
 decdata
 encdata

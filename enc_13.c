@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grpwk24.h"
+#define ROUND_FACTOR 30
 
 int enc(){
   FILE *ofp;
@@ -22,19 +23,30 @@ int enc(){
     
     switch( ( (c1 & 0x1) << 7) >> 6 | ( c2 & 0x1) ){
     case 0:
-      res = BASE_A;
+      for(int i=0;i<ROUND_FACTOR;i++){
+        res = BASE_A;
+        fputc(res, efp);
+      }
       break;
     case 1:
-      res = BASE_C;      
+      for(int i=0;i<ROUND_FACTOR;i++){
+        res = BASE_C;
+        fputc(res, efp);
+      }      
       break;
     case 2:
-      res = BASE_G;      
+      for(int i=0;i<ROUND_FACTOR;i++){
+        res = BASE_G;
+        fputc(res, efp);
+      }     
       break;
     case 3:
-      res = BASE_T;      
+      for(int i=0;i<ROUND_FACTOR;i++){
+        res = BASE_T;
+        fputc(res, efp);
+      }
       break;
     }
-    fputc(res, efp);
   }
   res = '\n';
   fputc(res, efp);
