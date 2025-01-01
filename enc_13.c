@@ -23,30 +23,19 @@ int enc(){
     
     switch( ( (c1 & 0x1) << 7) >> 6 | ( c2 & 0x1) ){
     case 0:
-      for(int i=0;i<ROUND_FACTOR;i++){
-        res = BASE_A;
-        fputc(res, efp);
-      }
+      res = BASE_A;
       break;
     case 1:
-      for(int i=0;i<ROUND_FACTOR;i++){
-        res = BASE_C;
-        fputc(res, efp);
-      }      
+      res = BASE_C;      
       break;
     case 2:
-      for(int i=0;i<ROUND_FACTOR;i++){
-        res = BASE_G;
-        fputc(res, efp);
-      }     
+      res = BASE_G;      
       break;
     case 3:
-      for(int i=0;i<ROUND_FACTOR;i++){
-        res = BASE_T;
-        fputc(res, efp);
-      }
+      res = BASE_T;      
       break;
     }
+    fputc(res, efp);
   }
   res = '\n';
   fputc(res, efp);
