@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grpwk24.h"
-#define ROUND_FACTOR 30
 
 int enc(){
   FILE *ofp;
