@@ -1,5 +1,5 @@
-PROGS = gen enc syn seq dec eval
-DATA = gendata encdata syndna seqdata decdata
+PROGS = gen enc_13 syn seq dec_13 eval
+DATA = encdata syndna seqdata decdata orgdata
 CC = gcc
 CFLAGS = -Wall
 
