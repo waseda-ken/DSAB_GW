@@ -18,6 +18,9 @@ make
 chmod 755 test.sh
 ./test.sh 1 0 0 0 0 0
 ```
-でよい。また、付随のPythonファイルを利用し、生成したファイルをすべて削除することができる。生成されたファイルの構造は次の通りである。
-
+でよい。また、
+```shell
+make clean
+```
+を実行することで実行コマンドで生成されたファイルを削除することができる。
 ![image](https://github.com/user-attachments/assets/f985d436-4ae4-4207-850a-55391def1978)
