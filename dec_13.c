@@ -3,7 +3,7 @@
 #include "grpwk24.h"
 #define ROUND_FACTOR 30
 
-// Function to round a number to the nearest multiple of ROUND_FACTOR
+// 四捨五入用の関数
 int round_to_nearest(int count, int factor) {
     if (count % factor >= (factor / 2))
         return (count / factor + 1) * factor;
@@ -11,7 +11,6 @@ int round_to_nearest(int count, int factor) {
         return (count / factor) * factor;
 }
 
-// Function to write 'copies' number of the base to the output file
 void write_copies(FILE *dfp, char base, int copies) {
     unsigned char res;
     for(int i = 0; i < copies; i++) {
@@ -38,31 +37,29 @@ void write_copies(FILE *dfp, char base, int copies) {
 }
 
 int dec(){
-    // Open the input file for reading
     FILE *sfp = fopen(SEQDATA, "r");
     if(sfp == NULL){
         fprintf(stderr, "Cannot open input file: %s\n", SEQDATA);
-        return 1; // Return non-zero to indicate failure
+        return 1; 
     }
 
-    // Open the output file for writing
     FILE *dfp = fopen(DECDATA, "w");
     if(dfp == NULL){
         fprintf(stderr, "Cannot open output file: %s\n", DECDATA);
-        fclose(sfp); // Close the input file before exiting
+        fclose(sfp);
         return 1;
     }
 
-    int c; // Use int to properly handle EOF
-    char current_base = '\0'; // To store the current nucleotide base
-    int run_length = 0; // To count the number of consecutive repeats
-    int line_number = 1; // To track line numbers for error reporting
+    int c; 
+    char current_base = '\0';
+    int run_length = 0;
+    int line_number = 1;
 
-    // Read the input file character by character
+
     while((c = getc(sfp)) != EOF){
-        // Handle newline characters to support multi-line sequences
+
         if(c == '\n' || c == '\r') {
-            // If there's an ongoing run, process it
+
             if(run_length > 0){
                 int rounded = round_to_nearest(run_length, ROUND_FACTOR);
                 int copies = rounded / ROUND_FACTOR;
@@ -72,16 +69,16 @@ int dec(){
                 run_length = 0;
                 current_base = '\0';
             }
-            fprintf(dfp, "\n"); // Write newline to output
+            fprintf(dfp, "\n"); 
             line_number++;
             continue;
         }
 
         if(c == current_base){
-            run_length++; // Increment run length for the same base
+            run_length++; 
         }
         else{
-            // If there's a previous run, process it
+        
             if(run_length > 0){
                 int rounded = round_to_nearest(run_length, ROUND_FACTOR);
                 int copies = rounded / ROUND_FACTOR;
@@ -89,13 +86,12 @@ int dec(){
                     write_copies(dfp, current_base, copies);
                 }
             }
-            // Start a new run with the current base
+        
             current_base = c;
             run_length = 1;
         }
     }
 
-    // After the loop, handle any remaining run
     if(run_length > 0){
         int rounded = round_to_nearest(run_length, ROUND_FACTOR);
         int copies = rounded / ROUND_FACTOR;
@@ -104,10 +100,9 @@ int dec(){
         }
     }
 
-    // Close both files
     fclose(sfp);
     fclose(dfp);
-    return 0; // Return zero to indicate success
+    return 0; 
 }
 
 int main(){
