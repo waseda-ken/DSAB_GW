@@ -291,39 +291,6 @@ return(0);
 }
 
 //dec
-
-int round_to_nearest(int count, int factor) {
-    if (count % factor >= (factor / 2))
-        return (count / factor + 1) * factor;
-    else
-        return (count / factor) * factor;
-}
-
-void write_copies(FILE *dfp, char base, int copies) {
-    unsigned char res;
-    for(int i = 0; i < copies; i++) {
-    switch(base){
-    case BASE_A:
-    res = 0;
-    break;
-    case BASE_C:
-    res = 1;      
-    break;
-    case BASE_G:
-    res = 2;      
-    break;
-    case BASE_T:
-    res = 3;      
-    break;
-    default:
-    res = 0;
-    break;
-    }
-    fputc((res>>1)+'0', dfp);
-    fputc((res&0x1)+'0', dfp);    
-}
-}
-
 int dec(){
     return(0);
 }
