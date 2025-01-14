@@ -479,7 +479,7 @@ return(0);
 
 int main(){
     for(int i=1;i<=TEST_NUMBER;i++){
-        printf("Running test(%d): %d\n", ROUND_FACTOR, i);
+        printf("Running test(n=%d): %d\n", ROUND_FACTOR, i);
         gen();
         enc();
         syn();
