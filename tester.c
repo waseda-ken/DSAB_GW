@@ -8,7 +8,9 @@
 
 #define TEST_NUMBER 10000
 #define ROUND_FACTOR 28
+int hd;
 int failCount;
+double averagehd;
 unsigned char buf[ORGDATA_LEN];
 
 
@@ -446,34 +448,34 @@ int dec(){
 //eval
 
 int eval(){
-FILE *ofp;
-if((ofp = fopen(ORGDATA, "r")) ==NULL){
-    fprintf(stderr, "cannot open %s\n", ORGDATA);
-    exit(1);
-}
+    FILE *ofp;
+    if((ofp = fopen(ORGDATA, "r")) ==NULL){
+        fprintf(stderr, "cannot open %s\n", ORGDATA);
+        exit(1);
+    }
 
-FILE *dfp;
-if((dfp = fopen(DECDATA, "r")) ==NULL){
-    fprintf(stderr, "cannot open %s\n", DECDATA);
-    exit(1);
-}
+    FILE *dfp;
+    if((dfp = fopen(DECDATA, "r")) ==NULL){
+        fprintf(stderr, "cannot open %s\n", DECDATA);
+        exit(1);
+    }
 
-unsigned char c1 = 0, c2 = 0;
-int hd=0;
-while(1){
-    if(c1 != '\n')
-    c1 = getc(ofp);
-    if(c2 != '\n')
-    c2 = getc(dfp);
-    if(c1 != c2) hd++;
-    if(c1 == '\n' && c2 == '\n')
-    break;
-}
-if(hd!=0) failCount++;
-printf(" hd=%d\n",hd);
-fclose(ofp);
-fclose(dfp);
-return(0);
+    unsigned char c1 = 0, c2 = 0;
+    hd=0;
+    while(1){
+        if(c1 != '\n')
+        c1 = getc(ofp);
+        if(c2 != '\n')
+        c2 = getc(dfp);
+        if(c1 != c2) hd++;
+        if(c1 == '\n' && c2 == '\n')
+        break;
+    }
+    if(hd!=0) failCount++;
+    printf(" hd=%d\n",hd);
+    fclose(ofp);
+    fclose(dfp);
+    return(0);
 }
 
 
@@ -503,11 +505,11 @@ int main(){
         for(int i=0; i<nnp;i++){
             np(snp, lnp);
         }
-        
+        averagehd=(averagehd*(i-1)+hd)/i;
         dec();
         eval();
     }
     printf("The number of failure is: %d\n", failCount);
-
+    printf("averagehd=%.1f\n", averagehd);
     return(0);
 }

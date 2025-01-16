@@ -7,7 +7,9 @@
 #include "grpwk24.h"
 
 #define TEST_NUMBER 1000
+int hd;
 int failCount;
+double averagehd;
 unsigned char buf[ORGDATA_LEN];
 
 
@@ -311,7 +313,7 @@ if((dfp = fopen(DECDATA, "r")) ==NULL){
 }
 
 unsigned char c1 = 0, c2 = 0;
-int hd=0;
+hd=0;
 while(1){
     if(c1 != '\n')
     c1 = getc(ofp);
@@ -355,10 +357,11 @@ int main(){
         for(int i=0; i<nnp;i++){
             np(snp, lnp);
         }
+        averagehd=(averagehd*(i-1)+hd)/i;
         dec();
         eval();
     }
     printf("The number of failure is: %d\n", failCount);
-
+    printf("averagehd=%.1f\n", averagehd);
     return(0);
 }
